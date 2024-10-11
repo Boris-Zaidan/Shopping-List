@@ -1,5 +1,6 @@
 import React, { useRef, useState } from "react";
 import { v4 } from "uuid";
+import { Container, AddButton, Product, TrashButton } from "./style";
 
 function Home() {
   const [products, setProducts] = useState([]);
@@ -17,22 +18,24 @@ function Home() {
   };
 
   return (
-    <div className="container">
-      <h1 className="title">Shopping List</h1>
+    <Container>
+      <h1>Shopping List</h1>
+
       <input placeholder="Products..." ref={inputRef} />
-      <button className="btnadd" onClick={addProduct}>
-        To Add
-      </button>
+      <AddButton onClick={addProduct}>Add</AddButton>
 
       {products.map((product) => (
-        <div className="product" key={product.id}>
+        <Product className="product" key={product.id}>
           <p className="list">{product.name}</p>
-          <button className="btndel" onClick={() => delProduct(product.id)}>
+          <TrashButton
+            className="btndel"
+            onClick={() => delProduct(product.id)}
+          >
             🗑️
-          </button>
-        </div>
+          </TrashButton>
+        </Product>
       ))}
-    </div>
+    </Container>
   );
 }
 
